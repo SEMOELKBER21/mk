@@ -11680,22 +11680,91 @@ end
 Redis:del(black..'Texting:Devblack')
 return send(msg_chat_id,msg_id,'⌔ تم حذف كليشه المطور')
 end
-if text == 'المطور' or text == 'مطور' then
-local TextingDevblack = Redis:get(black..'Texting:Devblack')
-if TextingDevblack then 
-return send(msg_chat_id,msg_id,TextingDevblack,"md",true)  
+
+
+if text == 'المبرمج سيمو ⋆' or text == 'النجوم' then  
+local UserId_Info = LuaTele.searchPublicChat("S_E_M_O_E_L_K_B_E_R")
+if UserId_Info.id then
+local  ban = LuaTele.getUser(UserId_Info.id)
+local  bain = LuaTele.getUserFullInfo(UserId_Info_Id)
+if  bain.bio then
+Bio =  bain.bio
 else
-local photo = LuaTele.getUserProfilePhotos(Sudo_Id)
-local UserInfo = LuaTele.getUser(Sudo_Id)
-Name_User = UserInfo.first_name
-if photo then
-return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,
-'*⌔ مطور البوت : *['..Name_User..'](tg://user?id='..UserInfo.id..')**', "md",true)
-else
-return send(msg_chat_id,msg_id,
-'*⌔ مطور البوت : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*',"md",true) 
+Bio = 'لا يوجد'
 end
---return send(msg_chat_id,msg_id,'\n*⌔ مطور البوت : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*',"md",true)  
+local photo = LuaTele.getUserProfilePhotos(UserId_Info.id)
+if photo.total_count > 0 then
+local TestText = "  ❲ «𝑬𝑳𝑵𝑮𝑶𝑶𝑴-𝑺𝑶𝑼𝑹𝑪𝑬» ❳\n— — — — — — — — —\n ⋆*Dev Name* :  [".. ban.first_name.."](tg://user?id="..UserId_Info.id..")\n⋆ *Dev Bio* : [❲ "..Bio.." ❳]"
+keyboardd = {} 
+keyboardd.inline_keyboard = {
+{
+{text = '< Developers semo  >', url = "https://t.me/S_E_M_O_E_L_K_B_E_R"}
+},
+}
+local msg_id = msg.id/2097152/0.5 
+ https.request("https://api.telegram.org/bot"..Token..'/sendPhoto?chat_id='..msg.chat_id..'&caption='..URL.escape(TestText)..'&photo='..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboardd))
+else
+local TestText = "- معلومات مطور السورس : \\nn: name Dev . [".. ban.first_name.."](tg://user?id="..UserId_Info.id..")\n\n ["..Bio.."]"
+keyboardd = {} 
+keyboardd.inline_keyboard = {
+{
+{text = '< Developers semo  >', url = "https://t.me/S_E_M_O_E_L_K_B_E_R"}
+},
+}
+local msg_id = msg.id/2097152/0.5 
+ https.request("https://api.telegram.org/bot"..Token..'/sendMessage?chat_id=' .. msg.chat_id .. '&text=' .. URL.escape(TestText).."&reply_to_message_id="..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboardd))
+end
+end
+end
+
+
+
+if text == 'المطور' or text == 'مطور البوت' then   
+local  ban = LuaTele.getUser(Sudo_Id) 
+local  bain = LuaTele.getUserFullInfo(Sudo_Id)
+local Get_Chat = LuaTele.getChat(msg_chat_id)
+local Info_Chats = LuaTele.getSupergroupFullInfo(msg_chat_id)
+local bains = LuaTele.getUser(msg.sender.user_id)
+if  bain.bio then
+Bio =  bain.bio
+else
+Bio = 'لا يوجد'
+end
+if bains.first_name then
+klajq = '*['..bains.first_name..'](tg://user?id='..bains.id..')*'
+else
+klajq = 'لا يوجد'
+end
+if bains.username then
+basgk = ' '..bains.username..' '
+else
+basgk = 'لا يوجد'
+end
+if ban.username then
+Creator = "* "..ban.first_name.."*\n"
+else
+Creator = "* ["..ban.first_name.."](tg://user?id="..ban.id..")*\n"
+end
+if ban.first_name then
+Creat = " "..ban.first_name.." "
+else
+Creat = " Developers Bot \n"
+end
+local photo = LuaTele.getUserProfilePhotos(Sudo_Id)
+if photo.total_count > 0 then
+local TestText = "  ❲ Developers Bot ❳\n— — — — — — — — —\n ⋆*Dev Name* :  [".. ban.first_name.."](tg://user?id="..Sudo_Id..")\n⋆ *Dev Bio* : ["..Bio.." ]\n"
+keyboardd = {} 
+keyboardd.inline_keyboard = {
+{
+{text = Creat, url = "https://t.me/"..ban.username..""},
+},
+}
+local msg_id = msg.id/2097152/0.5 
+ https.request("https://api.telegram.org/bot"..Token..'/sendPhoto?chat_id='..msg.chat_id..'&caption='..URL.escape(TestText)..'&photo='..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboardd))
+else
+local TestText = "  ❲ Developers semo  ❳\n— — — — — — — — —\n ⋆*Dev Name* :  [".. ban.first_name.."](tg://user?id="..Sudo_Id..")\n⋆ *Dev Bio* : [❲ "..Bio.." ❳]"
+local msg_id = msg.id/2097152/0.5 
+ https.request("https://api.telegram.org/bot"..Token..'/sendMessage?chat_id=' .. msg.chat_id .. '&text=' .. URL.escape(TestText).."&reply_to_message_id="..msg_id.."&parse_mode=markdown")
 end
 end
 ---زخرفة ----
@@ -15216,25 +15285,18 @@ send(msg.chat_id,msg.id,"• للمبرمج محمد فقط")
 end
 end
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' or text == 'source' then
-photo = "https://t.me/Tepthon/3939"
-local T =[[
-ــــــــــــــــــــــ⌔ـــــــــــــــــــــ
- ⌔ 𝑆𝑂𝐔𝑅𝐶𝐸 𝑇𝐸𝑃𝑇𝐻𝑂𝑁  ⌔
-ــــــــــــــــــــــ⌔ـــــــــــــــــــــ
-⌔ 𝐷𝐸𝑉 >> [˹  𝐷𝐸𝑉 𝑀𝑂𝐻AMAD .](t.me/P17_12)
-ــــــــــــــــــــــ⌔ـــــــــــــــــــــ 
-⌔ 𝐷𝐸𝑉 >> [˹ - 𝐷𝐸𝑉 𝑀𝑂𝐻](t.me/Tepthon)
-ــــــــــــــــــــــ⌔ـــــــــــــــــــــ 
-⌔ـــ⌔ >> [˹ 𝑆𝑂𝐔𝑅𝐶𝐸 𝑇𝐸𝑃𝑇𝐻𝑂𝑁  .](t.me/Tepthon)
-ــــــــــــــــــــــ⌔ـــــــــــــــــــــ 
-]]
+photo = "https://t.me/SSE_MO"
+local Name = '* ╭───── •⋆• ─────╮\n*⋆ [𝑺𝑶𝑼𝑹𝑪𝑬 𝑬𝑳𝑵𝑮𝑶𝑶𝑴](t.me/SSE_MO)*\n*⋆ [𝑰𝑵𝑭𝑶 𝑺𝑶𝑼𝑹𝑪𝑬](t.me/SSE_MO)*\n*⋆ [𝑮𝑹𝑶𝑼𝑷 𝑻𝑾𝑺](t.me/T_S_T1)*\n*⋆ [𝑫𝑬𝑽 𝑺𝑶𝑼𝑹𝑪𝑬 𝑬𝑳𝑵𝑮𝑶𝑶𝑴](t.me/S_E_M_O_E_L_K_B_E_R)*\n╰───── • ⋆ • ─────╯\n⍟ 𝑻𝑯𝑬 𝑩𝑬𝑺𝑻 𝑶𝑵 𝑺𝑶𝑼𝑹𝑪𝑬 ⏎*'
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '- 𝐷𝐸𝑉 𝑀𝑂𝐻𝐴𝑀𝑀𝐴𝐷 𝅘𝅥𝅯.', url = "https://t.me/P17_12"},
+{text = ' 𝑺𝑶𝑼𝑹𝑪𝑬 𝑬𝑳𝑵𝑮𝑶𝑶𝑴' , url = "https://t.me/SSE_MO"}
+},
+}
+{text = 'D E V : S E M O E L K B E R', url = "https://t.me/S_E_M_O_E_L_K_B_E"},
 },
 {
-{text = '𝑆𝑂𝐔𝑅𝐶𝐸 𝑇𝐸𝑃𝑇𝐻𝑂𝑁  ', url = "https://t.me/Tepthon"}
+{text = 'اضف البوت الي مجموعتك✅', url = 't.me/'..UserBot..'?startgroup=new'}
 },
 }
 local msgg = msg_id/2097152/0.5
